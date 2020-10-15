@@ -1,107 +1,52 @@
 ﻿#include <iostream>
 using namespace std;
-int stack[100], n = 100, stack_pointer = -1;
-int reversed_stack[100];
-void push(int val) {
-    if (stack_pointer >= n - 1)
-        cout << "Stack Overflow" << endl;
-    else {
-        stack_pointer++;
-        stack[stack_pointer] = val;
-    }
-}
-void pop() {
-    if (stack_pointer <= -1)
-        cout << "Stack Underflow" << endl;
-    else {
-        cout << "The popped element is " << stack[stack_pointer] << endl;
-        stack_pointer--;
-    }
-}
-void top() {
-    if (stack_pointer <= -1)
-        cout << "Stack is empty" << endl;
-    else {
-        cout << "The top of the stack is " << stack[stack_pointer] << endl;
-    }
-}
-void display() {
-    if (stack_pointer >= 0) {
-        cout << "Stack elements are:";
-        for (int i = stack_pointer; i >= 0; i--)
-            cout << stack[i] << " ";
-        cout << endl;
-    }
-    else
-        cout << "Stack is empty";
-}
-void swap_top_and_bottom() {
-    if (stack_pointer > -1) {
-        int temp = stack[stack_pointer];
-        stack[stack_pointer] = stack[0];
-        stack[0] = stack[stack_pointer];
-    }
-    else { cout << "Stack is empty" << endl; }
-}
-void reverse_stack() {
-    if (stack_pointer >= 0) {
-        for (int i = stack_pointer; i >= 0; i--) {
-            for (int j = 0; i >= stack_pointer; j++) {
-                reversed_stack[j] = stack[i];
-            }            
-        }    
-        for (int i = stack_pointer; i >= 0; i--) {            
-             stack[i] = reversed_stack[i];            
-        }
-    }
-    else
-        cout << "Stack is empty";
-}
-void delete_all() {
-    for (int i = stack_pointer; i >= 0; i--) {
-        pop();
-    }
-}
-bool is_element_belong(int elem) {
-    for (int i = stack_pointer; i >= 0; i--) {
-        if (stack[stack_pointer] == elem) {
-            return true;
-        }
-    }
-    return false;
-}
+#include "STACK.h"
+
 int main() {
-    int ch, val;
-    cout << "1) Push in stack" << endl;
-    cout << "2) Pop from stack" << endl;
-    cout << "3) Display stack" << endl;
-    cout << "4) Exit" << endl;
-    do {
-        cout << "Enter choice: " << endl;
+    int ch=0, val;
+    STACK TheStack;
+    while (ch != 9) {
+        cout << "choose the action" << endl;
+        cout << "1 - push" << endl;
+        cout << "2 - pop" << endl;
+        cout << "3 - top" << endl;
+        cout << "4 - display" << endl;
+        cout << "5 - swap_top_and_bottom" << endl;
+        cout << "6 - reverse_stack" << endl;
+        cout << "7 - delete_all" << endl;
+        cout << "8 - is_element_belong" << endl;
+        cout << "9 - exit this part of menu" << endl;
         cin >> ch;
         switch (ch) {
-        case 1: {
-            cout << "Enter value to be pushed:" << endl;
+        case 1:
+            cout << "enter the value" << endl;
             cin >> val;
-            push(val);
+            TheStack.push(val);
+            break;
+        case 2:
+            TheStack.pop();
+            break;
+        case 3:
+            TheStack.top();
+            break;
+        case 4:
+            TheStack.display();
+            break;
+        case 5:
+            TheStack.swap_top_and_bottom();
+            break;
+        case 6:
+            TheStack.reverse_stack();
+            break;
+        case 7:
+            TheStack.delete_all();
+            break;
+        case 8:
+            cout << "enter the value" << endl;
+            cin >> val;
+            cout << TheStack.is_element_belong(val);
             break;
         }
-        case 2: {
-            pop();
-            break;
-        }
-        case 3: {
-            display();
-            break;
-        }
-        case 4: {
-            cout << "Exit" << endl;
-            break;
-        }
-        default: {
-            cout << "Invalid Choice" << endl;
-        }
-        }
-    } while (ch != 4);
+    }
     return 0;
 }
