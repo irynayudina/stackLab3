@@ -66,12 +66,10 @@ public:
     }
     void reverse_stack() {
         if (stack_pointer >= 0) {
-            for (int i = stack_pointer; i >= 0; i--) {
-                for (int j = 0; i >= stack_pointer; j++) {
-                    reversed_stack[j] = stack[i];
-                }
+            for (int i = stack_pointer; i >= 0; i--) {                
+                    reversed_stack[stack_pointer - i] = stack[i];
             }
-            for (int i = stack_pointer; i >= 0; i--) {
+            for (int i = 0; i <= stack_pointer; i++) {
                 stack[i] = reversed_stack[i];
             }
         }
