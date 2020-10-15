@@ -1,13 +1,34 @@
  #pragma once
 #include <iostream>
-using namespace std;
+struct NodeStack
+{
+    int item = 0;
+    bool operator==(const NodeStack& p) {
+        if (this->item == p.item) { return true; }
+        else return false;
+    }
+    friend ostream& operator<< (ostream& out, const NodeStack& point);
+    friend istream& operator>> (istream& out, NodeStack& point);
+};
+ostream& operator<<(ostream& out, const NodeStack& point)
+{
+    out << point.item << " ";
+    return out;
+}
+istream& operator>> (istream& out, NodeStack& point)
+{
+    out >> point.item;
+    return out;
+}
+template <typename T>
 class STACK
 {
 private:
-    int stack[100], n = 100, stack_pointer = -1;
-    int reversed_stack[100];
+    T stack[100];
+    int n = 100, stack_pointer = -1;
+    T reversed_stack[100];
 public:
-    void push(int val) {
+    void push(T val) {
         if (stack_pointer >= n - 1)
             cout << "Stack Overflow" << endl;
         else {
@@ -58,7 +79,7 @@ public:
     }
     void swap_top_and_bottom() {
         if (stack_pointer > -1) {
-            int temp = stack[stack_pointer];
+            T temp = stack[stack_pointer];
             stack[stack_pointer] = stack[0];
             stack[0] = stack[stack_pointer];
         }
@@ -81,7 +102,7 @@ public:
             pop();
         }
     }
-    bool is_element_belong(int elem) {
+    bool is_element_belong(T elem) {
         for (int i = stack_pointer; i >= 0; i--) {
             if (stack[i] == elem) {
                 return true;

@@ -3,8 +3,9 @@ using namespace std;
 #include "STACK.h"
 
 int main() {
-    int ch=0, val;
-    STACK TheStack;
+    NodeStack val;
+    int ch=0;
+    STACK<NodeStack> TheStack;
     while (ch != 9) {
         cout << "choose the action" << endl;
         cout << "1 - push" << endl;
@@ -20,7 +21,7 @@ int main() {
         switch (ch) {
         case 1:
             cout << "enter the value" << endl;
-            cin >> val;
+            cin >> val.item;
             TheStack.push(val);
             break;
         case 2:
@@ -43,7 +44,7 @@ int main() {
             break;
         case 8:
             cout << "enter the value" << endl;
-            cin >> val;
+            cin >> val.item;
             cout << TheStack.is_element_belong(val);
             break;
         }
