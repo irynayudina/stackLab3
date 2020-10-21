@@ -42,15 +42,15 @@ public:
             cout << "Stack Underflow" << endl;
         else {
             cout << "The popped element is " << stack[stack_pointer] << endl;
-            stack_pointer--;
+            --stack_pointer;
         }
     }
-    int pop_int() {
+    T pop_int() {
         if (stack_pointer <= -1)
             cout << "Stack Underflow" << endl;
         else {
+            return stack[stack_pointer];
             --stack_pointer;
-            return stack[stack_pointer +1];
            
         }
     }
@@ -61,11 +61,11 @@ public:
             cout << "The top of the stack is " << stack[stack_pointer] << endl;
         }
     }
-    int top_int() {
+    T top_int() {
         if (stack_pointer <= -1)
             cout << "Stack is empty" << endl;
         else {
-            return stack[stack_pointer];;
+            return stack[stack_pointer];
         }
     }
     void display() {
@@ -112,7 +112,7 @@ public:
         return false;
     }
     bool is_empty() {
-        if (stack_pointer <= 0) {
+        if (stack_pointer < 0) {
             return true;
         }
         return false;
