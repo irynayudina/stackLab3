@@ -1,5 +1,6 @@
  #pragma once
 #include <iostream>
+using namespace std;
 struct NodeStack
 {
     int item = 0;
@@ -78,10 +79,10 @@ public:
             cout << "Stack is empty" << endl;
     }
     void swap_top_and_bottom() {
-        if (stack_pointer > -1) {
+        if (stack_pointer >= 0) {
             T temp = stack[stack_pointer];
             stack[stack_pointer] = stack[0];
-            stack[0] = stack[stack_pointer];
+            stack[0] = temp;
         }
         else { cout << "Stack is empty" << endl; }
     }
